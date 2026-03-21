@@ -1,0 +1,135 @@
+[0m11:18:00.947143 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000206B750D2B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000206B6495F10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000206BA14DCA0>]}
+
+
+============================== 11:18:00.953145 | 54f86963-85bf-4006-a732-b5caacd46ec4 ==============================
+[0m11:18:00.953145 [info ] [MainThread]: Running with dbt=1.8.7
+[0m11:18:00.953145 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'logs', 'debug': 'False', 'profiles_dir': 'C:\\Users\\Krindy\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt init nhl_dbt', 'send_anonymous_usage_stats': 'True'}
+[0m11:18:00.970148 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse logging event dictionary. Failed to parse dir field: expected string or bytes-like object.. Dictionary: {'dir': WindowsPath('C:/Users/Krindy/.dbt')}
+[0m11:18:00.971149 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m11:18:00.974149 [debug] [MainThread]: Starter project path: C:\Users\Krindy\PycharmProjects\NHL_Snowflake\venv\lib\site-packages\dbt\include\starter_project
+[0m11:18:00.987152 [info ] [MainThread]: 
+Your new dbt project "nhl_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m11:18:00.988152 [info ] [MainThread]: Setting up your profile.
+[0m11:19:59.083341 [info ] [MainThread]: Profile nhl_dbt written to C:\Users\Krindy\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m11:19:59.084342 [debug] [MainThread]: Command `dbt init` succeeded at 11:19:59.084342 after 118.18 seconds
+[0m11:19:59.085343 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000206B750D2B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000206BA217A90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000206BA14D250>]}
+[0m11:19:59.085343 [debug] [MainThread]: Flushing usage events
+[0m11:20:32.895274 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D4A8CD370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D49855FA0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D4D199C10>]}
+
+
+============================== 11:20:32.901276 | c9d308d2-ebed-4564-a7d6-5d2c515b70d9 ==============================
+[0m11:20:32.901276 [info ] [MainThread]: Running with dbt=1.8.7
+[0m11:20:32.901276 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\Krindy\\.dbt', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt debug', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m11:20:32.919281 [info ] [MainThread]: dbt version: 1.8.7
+[0m11:20:32.920280 [info ] [MainThread]: python version: 3.8.2
+[0m11:20:32.921282 [info ] [MainThread]: python path: C:\Users\Krindy\PycharmProjects\NHL_Snowflake\venv\Scripts\python.exe
+[0m11:20:32.921282 [info ] [MainThread]: os info: Windows-10-10.0.19041-SP0
+[0m11:20:33.668448 [info ] [MainThread]: Using profiles dir at C:\Users\Krindy\.dbt
+[0m11:20:33.668448 [info ] [MainThread]: Using profiles.yml file at C:\Users\Krindy\.dbt\profiles.yml
+[0m11:20:33.669448 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\Krindy\PycharmProjects\NHL_Snowflake\dbt_project.yml
+[0m11:20:33.670448 [info ] [MainThread]: adapter type: snowflake
+[0m11:20:33.670448 [info ] [MainThread]: adapter version: 1.8.4
+[0m11:20:33.671449 [info ] [MainThread]: Configuration:
+[0m11:20:33.671449 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m11:20:33.672449 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m11:20:33.672449 [info ] [MainThread]: Required dependencies:
+[0m11:20:33.673449 [debug] [MainThread]: Executing "git --help"
+[0m11:20:33.887953 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m11:20:33.887953 [debug] [MainThread]: STDERR: "b''"
+[0m11:20:33.888952 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m11:20:33.888952 [info ] [MainThread]: Connection:
+[0m11:20:33.889952 [info ] [MainThread]:   account: oz04229.west-us-2.azure
+[0m11:20:33.889952 [info ] [MainThread]:   user: MURRAYEVANS
+[0m11:20:33.890954 [info ] [MainThread]:   database: NHL
+[0m11:20:33.890954 [info ] [MainThread]:   warehouse: COMPUTE_WH
+[0m11:20:33.891955 [info ] [MainThread]:   role: ACCOUNTADMIN
+[0m11:20:33.891955 [info ] [MainThread]:   schema: NHL
+[0m11:20:33.892954 [info ] [MainThread]:   authenticator: None
+[0m11:20:33.892954 [info ] [MainThread]:   oauth_client_id: None
+[0m11:20:33.892954 [info ] [MainThread]:   query_tag: None
+[0m11:20:33.893955 [info ] [MainThread]:   client_session_keep_alive: False
+[0m11:20:33.893955 [info ] [MainThread]:   host: None
+[0m11:20:33.894955 [info ] [MainThread]:   port: None
+[0m11:20:33.894955 [info ] [MainThread]:   proxy_host: None
+[0m11:20:33.895955 [info ] [MainThread]:   proxy_port: None
+[0m11:20:33.895955 [info ] [MainThread]:   protocol: None
+[0m11:20:33.895955 [info ] [MainThread]:   connect_retries: 1
+[0m11:20:33.896955 [info ] [MainThread]:   connect_timeout: None
+[0m11:20:33.896955 [info ] [MainThread]:   retry_on_database_errors: False
+[0m11:20:33.897955 [info ] [MainThread]:   retry_all: False
+[0m11:20:33.897955 [info ] [MainThread]:   insecure_mode: False
+[0m11:20:33.898956 [info ] [MainThread]:   reuse_connections: None
+[0m11:20:33.898956 [info ] [MainThread]: Registered adapter: snowflake=1.8.4
+[0m11:20:33.899955 [debug] [MainThread]: Acquiring new snowflake connection 'debug'
+[0m11:20:33.900955 [debug] [MainThread]: Using snowflake connection "debug"
+[0m11:20:33.900955 [debug] [MainThread]: On debug: select 1 as id
+[0m11:20:33.900955 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m11:20:34.997409 [debug] [MainThread]: SQL status: SUCCESS 1 in 1.096 seconds
+[0m11:20:34.998408 [debug] [MainThread]: On debug: Close
+[0m11:20:35.092115 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m11:20:35.092654 [info ] [MainThread]: [31m1 check failed:[0m
+[0m11:20:35.093668 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\Krindy\PycharmProjects\NHL_Snowflake\dbt_project.yml> not found
+
+[0m11:20:35.094668 [debug] [MainThread]: Command `dbt debug` failed at 11:20:35.094668 after 2.25 seconds
+[0m11:20:35.094668 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m11:20:35.095657 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D4A8CD370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D4D529640>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019D66721970>]}
+[0m11:20:35.095657 [debug] [MainThread]: Flushing usage events
+[0m21:30:57.850086 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001782C8AD370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001782F4ED250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001782F4ED880>]}
+
+
+============================== 21:30:57.903376 | 2b77122f-6670-42a7-b273-1df20d09fae4 ==============================
+[0m21:30:57.903376 [info ] [MainThread]: Running with dbt=1.8.7
+[0m21:30:57.904376 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\Krindy\\.dbt', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'invocation_command': 'dbt run --select game_results --full-refresh', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m21:30:57.905376 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Krindy\PycharmProjects\NHL_Snowflake\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m21:30:57.906376 [debug] [MainThread]: Command `dbt run` failed at 21:30:57.906376 after 0.12 seconds
+[0m21:30:57.906376 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001782C8AD370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001782F2F9C10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001782B835FA0>]}
+[0m21:30:57.907376 [debug] [MainThread]: Flushing usage events
+[0m04:46:09.681104 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025D568791F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025D594BD7F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025D594BD430>]}
+
+
+============================== 04:46:09.688634 | 2e95e774-58e6-4628-a025-2be5e385c3e0 ==============================
+[0m04:46:09.688634 [info ] [MainThread]: Running with dbt=1.8.7
+[0m04:46:09.688634 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\Krindy\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'invocation_command': 'dbt run', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m04:46:09.688634 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Krindy\PycharmProjects\NHL_Snowflake\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m04:46:09.688634 [debug] [MainThread]: Command `dbt run` failed at 04:46:09.688634 after 0.07 seconds
+[0m04:46:09.688634 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025D568791F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025D5926A9A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025D592B91C0>]}
+[0m04:46:09.692635 [debug] [MainThread]: Flushing usage events
+[0m16:21:56.218615 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209A8C892B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209AB8CD5E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209AB958A60>]}
+
+
+============================== 16:21:56.224616 | 1103f726-af6a-4a21-84a2-6994e98c3295 ==============================
+[0m16:21:56.224616 [info ] [MainThread]: Running with dbt=1.8.7
+[0m16:21:56.225617 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\Krindy\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run --select game_log game_odds in_season_category_ranks current_bet_recommendations', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m16:21:56.225617 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\Krindy\PycharmProjects\NHL_Snowflake\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m16:21:56.226616 [debug] [MainThread]: Command `dbt run` failed at 16:21:56.226616 after 0.07 seconds
+[0m16:21:56.226616 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209A8C892B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209AB9589D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209AB6C9160>]}
+[0m16:21:56.227618 [debug] [MainThread]: Flushing usage events

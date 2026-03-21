@@ -1,0 +1,109 @@
+version: 2
+
+models:
+  - name: game_odds
+    description: game level odds data averaged over available bookmakers for a single aggregate line per total per game
+
+    columns:
+      - name: start_time_utc
+        description: start time in utc time zone
+        data_tests:
+          - not_null
+      - name: home_team
+        description: home team name
+        data_tests:
+          - not_null
+      - name: away_team
+        description: away team name
+        data_tests:
+          - not_null
+      - name: total
+        description: total score line
+        data_tests:
+          - not_null
+      - name: over_price
+        description: decimal odds of over price
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 1
+              max_value: 2.5
+      - name: under_price
+        description: decimal odds of under price
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 1
+              max_value: 2.5
+      - name: game_id
+        description: odds api format game id
+        data_tests:
+          - not_null
+
+  - name: category_roi
+    description: for various metrics over each total amount combines over/under roi performance
+
+    columns:
+      - name: criteria
+        data_tests:
+          - not_null
+      - name: total
+        data_tests:
+          - not_null
+      - name: under_count
+        data_tests:
+          - not_null
+      - name: over_count
+        data_tests:
+          - not_null
+      - name: games_count
+        data_tests:
+          - not_null
+      - name: under_pct
+        data_tests:
+          - not_null
+      - name: over_pct
+        data_tests:
+          - not_null
+      - name: avg_under_price
+        data_tests:
+          - not_null
+      - name: avg_over_price
+        data_tests:
+          - not_null
+      - name: units_won
+        data_tests:
+          - not_null
+      - name: roi
+        data_tests:
+          - not_null
+
+
+  - name: current_bet_recommendations
+    description: calculated daily for the current games with odds available. gives totals of criteria aligned with over or under bets
+
+    columns:
+      - name: start_time_utc
+        data_tests:
+          - not_null
+      - name: home_team
+        data_tests:
+          - not_null
+      - name: away_team
+        data_tests:
+          - not_null
+      - name: total
+        data_tests:
+          - not_null
+      - name: over_price
+        data_tests:
+          - not_null
+      - name: under_price
+        data_tests:
+          - not_null
+      - name: over_criteria
+        data_tests:
+          - not_null
+      - name: under_criteria
+        data_tests:
+          - not_null

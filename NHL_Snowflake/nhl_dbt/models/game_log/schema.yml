@@ -1,0 +1,208 @@
+version: 2
+
+models:
+  - name: game_log
+    description: Team level stats for individual games
+
+    columns:
+      - name: game_id
+        description: game id in nhl api format
+        data_tests:
+          - unique
+          - not_null
+
+      - name: start_time_utc
+        description: start time in UTC time zone
+        data_tests:
+          - not_null
+
+      - name: away_team
+        description: away team name
+        data_tests:
+          - not_null
+      - name: home_team
+        description: home team name
+        data_tests:
+          - not_null
+      - name: away_goals
+        description: away team total goals
+        data_tests:
+          - not_null
+      - name: home_goals
+        description: home team total goals
+        data_tests:
+          - not_null
+      - name: total_goals
+        description: total game goals
+        data_tests:
+          - not_null
+      - name: away_sog
+        description: away team shots on goal
+        data_tests:
+          - not_null
+      - name: home_sog
+        description: home team shots on goal
+        data_tests:
+          - not_null
+      - name: total_sog
+        description: total game shots on goal
+        data_tests:
+          - not_null
+
+  - name: goalie_game_log
+    description: Individual game level stats for goalies
+
+    columns:
+      - name: game_id
+        description: game id in nhl api format
+        data_tests:
+          - not_null
+      - name: start_time_utc
+        description: start time in utc time zone
+        data_tests:
+          - not_null
+      - name: away_team
+        description: away team name
+        data_tests:
+          - not_null
+      - name: home_team
+        description: home team name
+        data_tests:
+          - not_null
+      - name: goalie_game
+
+  - name: category_ranks
+    description: For each game, all teams are ranked in various categories based on that season to date. The ranks of the two teams playing that game are selected.
+
+    columns:
+      - name: game_id
+        data_tests:
+          - not_null
+          - unique
+      - name: home_team
+        data_tests:
+          - not_null
+      - name: away_team
+        data_tests:
+          - not_null
+      - name: total_goals
+        data_tests:
+          - not_null
+      - name: home_total_goals_per_game_rank
+        data_tests:
+          - not_null
+      - name: away_total_goals_per_game_rank
+        data_tests:
+          - not_null
+      - name: home_total_goals_per_game
+        data_tests:
+          - not_null
+      - name: away_total_goals_per_game
+        data_tests:
+          - not_null
+      - name: home_goals_for_per_game_rank
+        data_tests:
+          - not_null
+      - name: away_goals_for_per_game_rank
+        data_tests:
+          - not_null
+      - name: home_goals_for_per_game
+        data_tests:
+          - not_null
+      - name: away_goals_for_per_game
+        data_tests:
+          - not_null
+      - name: home_goals_against_per_game_rank
+        data_tests:
+          - not_null
+      - name: away_goals_against_per_game_rank
+        data_tests:
+          - not_null
+      - name: home_goals_against_per_game
+        data_tests:
+          - not_null
+      - name: away_goals_against_per_game
+        data_tests:
+          - not_null
+      - name: home_total_sog_per_game_rank
+        data_tests:
+          - not_null
+      - name: away_total_sog_per_game_rank
+        data_tests:
+          - not_null
+      - name: home_total_sog_per_game
+        data_tests:
+          - not_null
+      - name: away_total_sog_per_game
+        data_tests:
+          - not_null
+      - name: home_sog_against_per_game_rank
+        data_tests:
+          - not_null
+      - name: away_sog_against_per_game_rank
+        data_tests:
+          - not_null
+      - name: home_sog_against_per_game
+        data_tests:
+          - not_null
+      - name: away_sog_against_per_game
+        data_tests:
+          - not_null
+      - name: home_sog_for_per_game_rank
+        data_tests:
+          - not_null
+      - name: away_sog_for_per_game_rank
+        data_tests:
+          - not_null
+      - name: home_sog_for_per_game
+        data_tests:
+          - not_null
+      - name: away_sog_for_per_game
+        data_tests:
+          - not_null
+
+  - name: in_season_category_ranks
+    description: For each team gives up to date in season ranks for goals and sog totals, for and against
+
+    columns:
+      - name: team
+        data_tests:
+          - not_null
+          - unique
+      - name: total_goals_per_game
+        data_tests:
+          - not_null
+      - name: total_goals_per_game_rank
+        data_tests:
+          - not_null
+      - name: goals_for_per_game
+        data_tests:
+          - not_null
+      - name: goals_for_per_game_rank
+        data_tests:
+          - not_null
+      - name: goals_against_per_game
+        data_tests:
+          - not_null
+      - name: goals_against_per_game_rank
+        data_tests:
+          - not_null
+      - name: total_sog_per_game
+        data_tests:
+          - not_null
+      - name: total_sog_per_game_rank
+        data_tests:
+          - not_null
+      - name: sog_against_per_game
+        data_tests:
+          - not_null
+      - name: sog_against_per_game_rank
+        data_tests:
+          - not_null
+      - name: sog_for_per_game
+        data_tests:
+          - not_null
+      - name: sog_for_per_game_rank
+        data_tests:
+          - not_null
+
