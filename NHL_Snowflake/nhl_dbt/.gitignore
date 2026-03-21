@@ -1,7 +1,3 @@
-../.env
 target/
 dbt_packages/
 logs/
-./models/game_odds/category_roi.sql
-./models/game_odds/current_bet_recommendations.sql
-./models/game_odds/roi_by_season.sql
