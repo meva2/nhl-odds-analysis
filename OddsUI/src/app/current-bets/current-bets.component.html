@@ -1,0 +1,106 @@
+<style>
+input[type="number"] {
+    width: 80px;
+}
+</style>
+
+<div class="container mt-5 mb-5">
+    <form [formGroup]="betForm")>
+        <div >
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Start Time</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th>Total</th>
+                        <th>Over Odds</th>
+                        <th>Under Odds</th>
+                        <th>Over Priority</th>
+                        <th>Under Priority</th>
+                        <th>Side</th>
+                        <th>Amount</th>
+                        <th>Over Odds</th>
+                        <th>Under Odds</th>
+                        <th>Site</th>
+                        <th>Submit</th>
+                    </tr>
+                </thead>
+                <tbody formArrayName="bets">
+                <ng-container *ngFor="let bet of betsArray.controls; let i = index" [formGroupName]="i">
+                    <tr>
+                        <td>{{ bet.get('startTimeUTC')?.value | date: 'short' :'-1200' }}</td>
+                        <td>{{ bet.get('homeTeam')?.value }}</td>
+                        <td>{{ bet.get('awayTeam')?.value }}</td>
+                        <td>{{ bet.get('total')?.value }}</td>
+                        <td>{{ bet.get('overPrice')?.value }}</td>
+                        <td>{{ bet.get('underPrice')?.value }}</td>
+                        <td>{{ bet.get('overPriority')?.value }}</td>
+                        <td>{{ bet.get('underPriority')?.value }}</td>
+                        <td>
+                            <select formControlName="side">
+                                <option value="" disabled>Side</option>
+                                <option *ngFor="let side of sides" [ngValue]="side">{{ side }}</option>
+                            </select>
+                        </td>
+                        <td><input type="number" formControlName="amount" width=6/></td>
+                        <td><input type="number" formControlName="actualOverOdds" width=50px/></td>
+                        <td><input type="number" formControlName="actualUnderOdds" width=5/></td>
+                        <td>
+                            <select formControlName="site">
+                                <option value="" disabled>Site</option>
+                                <option *ngFor="let site of sites" [ngValue]="site">{{ site }}</option>
+                            </select>
+                        </td>
+                        <td><button class="btn btn-primary" (click)="submitRow(i)" [disabled]="bet.get('clicked')?.value">Submit</button></td>
+                    
+                        </tr>
+                        <tr *ngIf="checkSuccessMessage(i)">
+                            <td colspan="8">
+                                <span class="text text-success">{{bet.get('successMessage')?.value}}</span>
+                            </td>
+                        </tr>
+                        <tr *ngIf="checkErrorMessage(i)">
+                            <td colspan="8">
+                                <span class="text text-danger">{{bet.get('errorMessage')?.value}}</span>
+                            </td>
+                        </tr>
+                        
+                    </ng-container>
+                </tbody>
+                
+
+            </table>
+        </div>
+    </form>
+</div>
+
+<!-- <div class="mx-5">
+    <table class ="table table-striped">
+        <thead>
+            <tr>
+                <th>Start Time</th>
+                <th>Home Team</th>
+                <th>Away Team</th>
+                <th>Total</th>
+                <th>Over Odds</th>
+                <th>Under Odds</th>
+                <th>Over Priority</th>
+                <th>Under Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bet of currentBets;">
+                <td>{{ bet.startTimeUTC }}</td>
+                <td>{{ bet.homeTeam }}</td>
+                <td>{{ bet.awayTeam }}</td>
+                <td>{{ bet.total }}</td>
+                <td>{{ bet.overPrice }}</td>
+                <td>{{ bet.underPrice }}</td>
+                <td>{{ bet.overPriority }}</td>
+                <td>{{ bet.underPriority }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div> -->
