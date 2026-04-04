@@ -17,7 +17,8 @@ public class GlobalHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(value = {OddsException.class})
 	public ResponseEntity<String> oddsExceptionHandler (OddsException e){
-		return new ResponseEntity<String>(e.getMessage(), e.getHttpStatus());
+		System.out.println(e.getReply());
+		return new ResponseEntity<String>(e.getReply(), e.getHttpStatus());
 	}
 	
 

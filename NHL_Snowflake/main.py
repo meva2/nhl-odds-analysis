@@ -4,7 +4,7 @@ from write_snowflake import WriteSnowflake
 def main():
     snf = WriteSnowflake()
     # daily updated odds and game results load
-    # snf.write_current_odds()
+    snf.write_current_odds()
     snf.write_recent_results()
 
     # initial historic data load

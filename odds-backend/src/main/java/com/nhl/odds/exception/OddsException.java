@@ -15,10 +15,10 @@ public class OddsException extends Exception{
 	 */
 	private static final long serialVersionUID = 1L;
 	private HttpStatus httpStatus;
-	private String message;
+	private String reply;
 
-	public OddsException(String message, HttpStatus httpStatus) {
-		super(message);
+	public OddsException(String reply, HttpStatus httpStatus) {
+		this.reply = reply;
 		this.httpStatus = httpStatus;
 	}
 
