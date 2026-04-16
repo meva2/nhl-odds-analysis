@@ -20,21 +20,21 @@ input[type="number"] {
                         <th>Under Prio</th>
                         <th>Side</th>
                         <th>Amount</th>
-                        <th>Over Odds</th>
-                        <th>Under Odds</th>
                         <th>Site</th>
+                        <th>Edit</th>
                         <th>Submit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody formArrayName="bets">
                 <ng-container *ngFor="let bet of betsArray.controls; let i = index" [formGroupName]="i">
                     <tr>
-                        <td>{{ bet.get('startTimeUTC')?.value | date: 'short' :'-1200' }}</td>
+                        <td>{{ bet.get('startTimeUTC')?.value | date: 'short' :'-900' }}</td>
                         <td>{{ bet.get('homeTeam')?.value }}</td>
                         <td>{{ bet.get('awayTeam')?.value }}</td>
                         <td>{{ bet.get('total')?.value }}</td>
-                        <td>{{ bet.get('overPrice')?.value }}</td>
-                        <td>{{ bet.get('underPrice')?.value }}</td>
+                        <td><input type="number" formControlName="overPrice"></td>
+                        <td><input type="number" formControlName="underPrice"></td>
                         <td>{{ bet.get('overPriority')?.value }}</td>
                         <td>{{ bet.get('underPriority')?.value }}</td>
                         <td>
@@ -43,35 +43,30 @@ input[type="number"] {
                                 <option *ngFor="let side of sides" [ngValue]="side">{{ side }}</option>
                             </select>
                         </td>
-                        <td><input type="number" formControlName="amount"/></td>
-                        <td><input type="number" formControlName="actualOverOdds"/></td>
-                        <td><input type="number" formControlName="actualUnderOdds"/></td>
+                        <td><input type="number" formControlName="amount"></td>
                         <td>
                             <select formControlName="site">
                                 <option value="" disabled>Site</option>
                                 <option *ngFor="let site of sites" [ngValue]="site">{{ site }}</option>
                             </select>
                         </td>
-                        <td><button class="btn btn-primary" (click)="submitRow(i)" [disabled]="bet.get('clicked')?.value">Submit</button></td>
-                    
-                        </tr>
-                        <tr *ngIf="checkSuccessMessage(i)">
-                            <td colspan="8">
-                                <span class="text text-success">{{bet.get('successMessage')?.value}}</span>
-                            </td>
-                        </tr>
-                        <tr *ngIf="checkErrorMessage(i)">
-                            <td colspan="8">
-                                <span class="text text-danger">{{bet.get('errorMessage')?.value}}</span>
-                            </td>
-                        </tr>
-                        
+                        <td><button class="btn btn-warning" (click)="toggleEdit(i)" >Edit</button></td>
+                        <td><button class="btn btn-primary" (click)="updateRow(i)" [disabled]="!bet.get('clicked')?.value">Update</button></td>
+                        <td><button class="btn btn-danger" (click)="deleteRow(i)" [disabled]="bet.get('clicked')?.value">Delete</button></td>
+                    </tr>
+                    <tr *ngIf="checkSuccessMessage(i)">
+                        <td colspan="8">
+                            <span class="text text-success">{{bet.get('successMessage')?.value}}</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="checkErrorMessage(i)">
+                        <td colspan="8">
+                            <span class="text text-danger">{{bet.get('errorMessage')?.value}}</span>
+                        </td>
+                    </tr>
                     </ng-container>
                 </tbody>
-                
-
             </table>
         </div>
     </form>
 </div>
-

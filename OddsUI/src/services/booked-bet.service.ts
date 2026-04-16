@@ -1,36 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 
-export class BookedBet{
-  username: string ='';
-  startTimeUTC: string ='';
-  homeTeam: string ='';
-  awayTeam: string ='';
-  site: string ='';
-  total: number =0;
-  overPrice: number =0;
-  underPrice: number =0;
-  overPriority: number =0;
-  underPriority: number =0;
-  side: string ='';
-  dollarAmount: number =0
-
-  constructor(
-    username:string, 
-    startTimeUTC:string, 
-    homeTeam:string, 
-    awayTeam:string, 
-    site:string, 
-    total:number, 
-    overPrice:number, 
-    underPrice:number, 
-    overPriority:number,
-    underPriority:number,
-    side:string,
-    dollarAmount:number
-  ){}
+export interface BookedBet{
+  username: string;
+  startTimeUTC: Date;
+  homeTeam: string;
+  awayTeam: string;
+  site: string;
+  total: number;
+  overPrice: number;
+  underPrice: number;
+  overPriority: number;
+  underPriority: number;
+  side: string;
+  dollarAmount: number;
 }
 
 @Injectable({
@@ -44,5 +29,26 @@ export class BookedBetService {
 
   bookBet(bookedBet: BookedBet): Observable<string>{
     return this.http.post<string>(this.baseUrl+'/bookBet', bookedBet, {responseType: 'text' as 'json'});
+  }
+
+  getBookedBets(username: string): Observable<BookedBet[]>{
+    const params = {"username": username};
+    return this.http.get<any>(this.baseUrl+'/getUserBets', {params: params});
+  }
+
+  updateBet(bookedBet: BookedBet): Observable<string>{
+    return this.http.put<string>(this.baseUrl+'/updateBet', bookedBet, {responseType: 'text' as 'json'});
+  }
+
+  deleteBet(bookedBet: BookedBet): Observable<string>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const options = {
+      body: bookedBet,
+      headers: headers,
+      responseType: 'text' as 'json'
+    }
+    return this.http.delete<string>(this.baseUrl+'/deleteBet', options);
   }
 }

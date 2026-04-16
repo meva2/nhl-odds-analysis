@@ -37,12 +37,10 @@ public class UserServiceImpl implements UserService{
 		Optional<OddsUser> optionalUser = userRepository.findOneByUsername(userDTO.getUsername());
 		OddsUser existingUser = optionalUser.orElse(null);
 		if (existingUser == null) {
-			throw new OddsException("Invalid username", HttpStatus.UNAUTHORIZED);
+			throw new OddsException("Invalid credentials", HttpStatus.UNAUTHORIZED);
 		}
 		if (!existingUser.getPw().equals(userDTO.getPw())) {
-			System.out.println("existing pw: "+existingUser.getPw());
-			System.out.println("given pw: "+userDTO.getPw());
-			throw new OddsException("Invalid password", HttpStatus.UNAUTHORIZED);
+			throw new OddsException("Invalid credentials", HttpStatus.UNAUTHORIZED);
 		}	
 		return userDTO.getUsername();
 	}

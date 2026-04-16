@@ -1,28 +1,83 @@
-<div class="card">
-    <h4 class="card-header">Login</h4>
-    <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
-                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-                    <div *ngIf="f['username'].errors['required']">Username is required</div>
+<div *ngIf="login" class="container mt-5 mb-5 w-25">
+    <div  class="card">
+        <h4 class="card-header">Login</h4>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && fl['username'].errors }" />
+                    <div *ngIf="submitted && fl['username'].errors" class="invalid-feedback">
+                        <div *ngIf="fl['username'].errors['required']">Username is required</div>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
-                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fl['password'].errors }" />
+                    <div *ngIf="submitted && fl['password'].errors" class="invalid-feedback">
+                        <div *ngIf="fl['password'].errors['required']">Password is required</div>
+                    </div>
                 </div>
+                <div class="btn-group">
+                    <button [disabled]="loading" class="btn btn-success">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                        Login
+                    </button>
+                    <button type="button" (click)="onToggleLogin()" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+            <div *ngIf="errorMessage" class="text-center">
+                <span class="text text-danger">{{ errorMessage }}</span>
             </div>
-            <div>
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-                    Login
-                </button>
-                <a routerLink="../register" class="btn btn-link">Register</a>
+            <div *ngIf="successMessage" class="text-center">
+                <span class="text text-success">{{ successMessage }}</span>
             </div>
-        </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="register" class="container mt-5 mb-5 w-25">
+    <div  class="card">
+        <h4 class="card-header">Register</h4>
+        <div class="card-body">
+            <form [formGroup]="regForm" (ngSubmit)="onRegister()">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && fr['username'].errors }" />
+                    <div *ngIf="submitted && fr['username'].errors" class="invalid-feedback">
+                        <div *ngIf="fr['username'].errors['required']">Username is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fr['password'].errors }" />
+                    <div *ngIf="submitted && fr['password'].errors" class="invalid-feedback">
+                        <div *ngIf="fr['password'].errors['required']">Password is required</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" formControlName="passwordRepeat" class="form-control" [ngClass]="{ 'is-invalid': submitted && fr['passwordRepeat'].errors }" />
+                    <div *ngIf="submitted && fr['passwordRepeat'].errors" class="invalid-feedback">
+                        <div *ngIf="fr['passwordRepeat'].errors['required']">Matching password is required</div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" (click)="onToggleLogin()" class="btn btn-primary">
+                        Login
+                    </button>
+                    <button [disabled]="loading" class="btn btn-success">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                            Register  
+                    </button>
+                    
+                </div>
+            </form>
+            <div *ngIf="errorMessage" class="text-center">
+                <span class="text text-danger">{{ errorMessage }}</span>
+            </div>
+            <div *ngIf="successMessage" class="text-center">
+                <span class="text text-success">{{ successMessage }}</span>
+            </div>
+        </div>
     </div>
 </div>

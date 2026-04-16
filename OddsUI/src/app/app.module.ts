@@ -17,12 +17,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { BookedBetService } from 'src/services/booked-bet.service';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ViewEditBetsComponent } from './view-edit-bets/view-edit-bets.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrentBetsComponent,
     LoginComponent,
+    NavbarComponent,
+    ViewEditBetsComponent,
     
   ],
   imports:[

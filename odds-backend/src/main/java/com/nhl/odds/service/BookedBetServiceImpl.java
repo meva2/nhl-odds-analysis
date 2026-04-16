@@ -88,6 +88,7 @@ public class BookedBetServiceImpl implements BookedBetService{
 				betDTO.getAwayTeam(),
 				betDTO.getSite()
 				);
+		System.out.println(betId.toString());
 		Optional<BookedBet> optionalBet = bookedBetRepository.findById(betId);
 		BookedBet bookedBet = optionalBet.orElse(null);
 		if(bookedBet == null) {
@@ -105,6 +106,8 @@ public class BookedBetServiceImpl implements BookedBetService{
 				betDTO.getAwayTeam(),
 				betDTO.getSite()
 				);
+		System.out.println(betDTO.getStartTimeUTC());
+		System.out.println(betId.getStartTimeUTC());
 		Optional<BookedBet> optionalBet = bookedBetRepository.findById(betId);
 		BookedBet bookedBet = optionalBet.orElse(null);
 		if(bookedBet == null) {

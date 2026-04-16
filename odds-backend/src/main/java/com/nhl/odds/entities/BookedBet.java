@@ -1,5 +1,7 @@
 package com.nhl.odds.entities;
 
+
+
 import java.sql.Timestamp;
 
 import jakarta.persistence.Column;

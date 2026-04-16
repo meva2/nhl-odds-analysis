@@ -4,7 +4,7 @@ import { Observable} from 'rxjs';
 
 
 export interface CurrentBet{
-  startTimeUTC: string;
+  startTimeUTC: Date;
   homeTeam: string;
   awayTeam: string;
   total: number;

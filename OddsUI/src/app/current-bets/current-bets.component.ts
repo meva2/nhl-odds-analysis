@@ -69,7 +69,7 @@ export class CurrentBetsComponent implements OnInit {
       "overPriority": row.get('overPriority')?.value,
       "underPriority": row.get('underPriority')?.value,
       "side": row.get('side')?.value,
-      "dollarAmount": row.get('dollarAmount')?.value
+      "dollarAmount": row.get('amount')?.value
     };
     if (bookBet["username"] === ''){
       row.patchValue({errorMessage: 'Invalid user. Log in again.'});

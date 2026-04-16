@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable} from 'rxjs';
 export class LoginService {
 
   loginUrl: string = 'http://localhost:8080/api/user/login';
+  registerUrl: string = 'http://localhost:8080/api/user/add';
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,14 @@ export class LoginService {
       'Content-Type': 'text/plain; charset=utf-8'
     });
     return this.http.post<string>(this.loginUrl, body, {responseType: 'text' as 'json'});
+  }
+
+  registerUser(username: string, password: string): Observable<string> {
+    const body = {"username": username, "pw": password};
+    const headers = new HttpHeaders({
+      'Content-Type': 'text/plain; charset=utf-8'
+    });
+    return this.http.post<string>(this.registerUrl, body, {responseType: 'text' as 'json'});
   }
 
   isLoggedIn(): boolean {
