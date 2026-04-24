@@ -41,6 +41,7 @@ import { ViewEditBetsComponent } from './view-edit-bets/view-edit-bets.component
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
+    BrowserAnimationsModule
 
   ],
   providers: [

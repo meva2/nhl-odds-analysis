@@ -1,18 +1,32 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BookedBet, BookedBetService } from 'src/services/booked-bet.service';
-import { subHours } from 'date-fns'
+import { addHours, subHours, subDays, addDays, subMinutes, addMinutes } from 'date-fns'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @Component({
   selector: 'app-view-edit-bets',
   templateUrl: './view-edit-bets.component.html',
   styleUrls: ['./view-edit-bets.component.css']
 })
+
+
 export class ViewEditBetsComponent {
+
+  
 
   betForm!: FormGroup;
   sides = ['over', 'under'];
-  sites = ["Play Alberta", "Pinnacle"]
+  sites = ["Play Alberta", "Pinnacle"];
+  defaultStartTime!: Date;
+  defaultEndTime!: Date;
+  validDates: boolean = false;
+  dateRange = new FormGroup({
+    startDate: new FormControl<Date | null>(null, [Validators.required]),
+    endDate: new FormControl<Date | null>(null, [Validators.required]),
+  });
 
   constructor(
     private bookedBetService: BookedBetService,
@@ -20,14 +34,24 @@ export class ViewEditBetsComponent {
   ){}
 
   ngOnInit(): void {
-    this.betForm = this.fb.group({
-      bets: this.fb.array([])
-    });
-    this.loadBets();
+    this.defaultStartTime = subDays(new Date(), 70);
+    this.defaultEndTime = addDays(new Date(), 7)
+    
+    this.loadBetsByDates(this.defaultStartTime, this.defaultEndTime);
+    
   }
 
   get betsArray(): FormArray{
     return this.betForm.controls['bets'] as FormArray;
+  }
+
+  dateRangeValidator(form: FormGroup) {
+    const start = form.get('startDate')?.value;
+    const end = form.get('endDate')?.value;
+    if (start && end && end.getTime() < start.getTime()) {
+      return false;
+    }
+    return true;
   }
 
   createBetFormGroup(bet: BookedBet): FormGroup {
@@ -50,8 +74,12 @@ export class ViewEditBetsComponent {
       });
     }
 
-  loadBets(): void{
-    this.bookedBetService.getBookedBets(localStorage.getItem('login') ?? '').subscribe({
+  loadBetsByDates(startDate: Date, endDate: Date): void{
+    this.betForm = this.fb.group({
+      bets: this.fb.array([])
+    });
+    //this.bookedBetService.getBookedBets(localStorage.getItem('login') ?? '').subscribe({
+    this.bookedBetService.getBookedBetsByDateRange(localStorage.getItem('login') ?? '', startDate, endDate).subscribe({
       next: (bookedBets: BookedBet[]) => {
         bookedBets.forEach(bet => {
         this.betsArray.push(this.createBetFormGroup(bet))
@@ -71,7 +99,7 @@ export class ViewEditBetsComponent {
     row.patchValue({clicked: true});
     let updateBet = {
       "username": localStorage.getItem('login') ?? '',
-      "startTimeUTC": subHours(new Date(row.get('startTimeUTC')?.value), 6),
+      "startTimeUTC": new Date(row.get('startTimeUTC')?.value),
       "homeTeam": row.get('homeTeam')?.value,
       "awayTeam": row.get('awayTeam')?.value,
       "site": row.get('site')?.value,
@@ -83,7 +111,6 @@ export class ViewEditBetsComponent {
       "side": row.get('side')?.value,
       "dollarAmount": row.get('amount')?.value
     };
-    console.log()
     console.log(updateBet);
     if (updateBet["username"] === ''){
       row.patchValue({errorMessage: 'Invalid user. Log in again.'});
@@ -112,7 +139,7 @@ export class ViewEditBetsComponent {
     row.patchValue({clicked: true});
     let deleteBet = {
       "username": localStorage.getItem('login') ?? '',
-      "startTimeUTC": subHours(new Date(row.get('startTimeUTC')?.value), 6),
+      "startTimeUTC": new Date(row.get('startTimeUTC')?.value),
       "homeTeam": row.get('homeTeam')?.value,
       "awayTeam": row.get('awayTeam')?.value,
       "site": row.get('site')?.value,
@@ -171,6 +198,36 @@ export class ViewEditBetsComponent {
 
   checkEditable(index: number): boolean{
     return this.betsArray.at(index).get('editable')?.value;
+  }
+
+  dateSubmit(): void {
+    this.validDates = this.dateRangeValidator(this.dateRange);
+    if(this.dateRange.valid && this.validDates){
+      console.log('Form Submitted:'+ this.dateRange.get('startDate')?.value?.toISOString() +" "+ this.dateRange.get('endDate')?.value?.toISOString());
+      this.loadBetsByDates(
+        this.dateRange.get('startDate')?.value ?? this.defaultStartTime,
+        addMinutes(addHours(this.dateRange.get('endDate')?.value ?? this.defaultEndTime, 23), 55)
+      )
+    } else {
+      this.dateRange.markAllAsTouched();
+    }
+  }
+
+  viewAll(): void{
+    this.betForm = this.fb.group({
+      bets: this.fb.array([])
+    });
+    this.bookedBetService.getBookedBets(localStorage.getItem('login') ?? '').subscribe({
+      next: (bookedBets: BookedBet[]) => {
+        bookedBets.forEach(bet => {
+        this.betsArray.push(this.createBetFormGroup(bet))
+      });
+      console.log(bookedBets);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
 }

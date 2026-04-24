@@ -80,6 +80,7 @@ export class CurrentBetsComponent implements OnInit {
       next: (response: string) =>{
         row.patchValue({successMessage: 'Bet successfully booked.'});
         row.patchValue({clicked: false});
+        console.log(bookBet);
       },
       error: (err) => {
         row.patchValue({errorMessage: err['error']});
@@ -96,6 +97,7 @@ export class CurrentBetsComponent implements OnInit {
         currentBets.forEach(bet => {
           this.betsArray.push(this.createBetFormGroup(bet))
         });
+        console.log(currentBets);
       },
       error: (err) => {
         console.log(err);

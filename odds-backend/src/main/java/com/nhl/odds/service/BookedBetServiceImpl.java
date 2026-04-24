@@ -1,5 +1,6 @@
 package com.nhl.odds.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +41,7 @@ public class BookedBetServiceImpl implements BookedBetService{
 			BookedBet saveBet = new BookedBet();
 			saveBet.setUsername(betDTO.getUsername());
 			saveBet.setStartTimeUTC(betDTO.getStartTimeUTC());
+			System.out.println(saveBet.getStartTimeUTC());
 			saveBet.setHomeTeam(betDTO.getHomeTeam());
 			saveBet.setAwayTeam(betDTO.getAwayTeam());
 			saveBet.setSite(betDTO.getSite());
@@ -88,7 +90,7 @@ public class BookedBetServiceImpl implements BookedBetService{
 				betDTO.getAwayTeam(),
 				betDTO.getSite()
 				);
-		System.out.println(betId.toString());
+		System.out.println(betDTO.getStartTimeUTC());
 		Optional<BookedBet> optionalBet = bookedBetRepository.findById(betId);
 		BookedBet bookedBet = optionalBet.orElse(null);
 		if(bookedBet == null) {
@@ -107,7 +109,6 @@ public class BookedBetServiceImpl implements BookedBetService{
 				betDTO.getSite()
 				);
 		System.out.println(betDTO.getStartTimeUTC());
-		System.out.println(betId.getStartTimeUTC());
 		Optional<BookedBet> optionalBet = bookedBetRepository.findById(betId);
 		BookedBet bookedBet = optionalBet.orElse(null);
 		if(bookedBet == null) {
@@ -122,6 +123,31 @@ public class BookedBetServiceImpl implements BookedBetService{
 		bookedBet.setDollarAmount(betDTO.getDollarAmount());
 		bookedBetRepository.save(bookedBet);
 		
+	}
+	
+	public List<BookedBetDTO> getBookedBetsByUserAndDateRange(String username, Timestamp startTime, Timestamp endTime) throws OddsException{
+		List<BookedBetDTO> bookedBetsDTO = new ArrayList<BookedBetDTO>();
+		List<BookedBet> bookedBets = bookedBetRepository.findByUsernameAndDateRange(username, startTime, endTime);
+		bookedBets.forEach(bookedBet -> {
+			BookedBetDTO bookedBetDTO = new BookedBetDTO();
+			bookedBetDTO.setUsername(username);
+			bookedBetDTO.setStartTimeUTC(bookedBet.getStartTimeUTC());
+			bookedBetDTO.setHomeTeam(bookedBet.getHomeTeam());
+			bookedBetDTO.setAwayTeam(bookedBet.getAwayTeam());
+			bookedBetDTO.setSite(bookedBet.getSite());
+			bookedBetDTO.setTotal(bookedBet.getTotal());
+			bookedBetDTO.setOverPrice(bookedBet.getOverPrice());
+			bookedBetDTO.setUnderPrice(bookedBet.getUnderPrice());
+			bookedBetDTO.setOverPriority(bookedBet.getOverPriority());
+			bookedBetDTO.setUnderPriority(bookedBet.getUnderPriority());
+			bookedBetDTO.setSide(bookedBet.getSide());
+			bookedBetDTO.setDollarAmount(bookedBet.getDollarAmount());
+			bookedBetsDTO.add(bookedBetDTO);
+		});
+		if (bookedBetsDTO.isEmpty()) {
+			throw new OddsException("No bets found for user: " + username, HttpStatus.NOT_FOUND);
+		}
+		return bookedBetsDTO;
 	}
 
 }

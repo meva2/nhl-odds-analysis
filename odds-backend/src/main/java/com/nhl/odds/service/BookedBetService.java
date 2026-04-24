@@ -1,5 +1,6 @@
 package com.nhl.odds.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.nhl.odds.dto.BookedBetDTO;
@@ -10,4 +11,5 @@ public interface BookedBetService {
 	public void bookBet(BookedBetDTO betDTO) throws OddsException;
 	public void deleteBookedBet(BookedBetDTO betDTO) throws OddsException;
 	public void updateBookedBet(BookedBetDTO betDTO) throws OddsException;
+	public List<BookedBetDTO> getBookedBetsByUserAndDateRange(String username, Timestamp startTime, Timestamp endTime) throws OddsException;
 }

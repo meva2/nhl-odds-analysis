@@ -5,7 +5,37 @@ input[type="number"] {
 </style>
 <app-navbar></app-navbar>
 <div class="container mt-5 mb-5">
-    <form [formGroup]="betForm")>
+    <h3 class="text text-info">Filter for date range</h3>
+    <form [formGroup]="dateRange" (ngSubmit)="dateSubmit()">
+        <mat-form-field appearance="fill">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="startDate"/>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error *ngIf="dateRange.get('startDate')?.hasError('required')">
+                Start date is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="endDate" />
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="dateRange.get('endDate')?.hasError('required')">
+            End date is required
+            </mat-error>
+        </mat-form-field>
+        <div *ngIf="!validDates" class="error">
+            <span class="text text-danger">End date must be after start date</span>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit">
+            Submit
+        </button>   
+    </form>
+    <span></span>
+    <button class="btn btn-primary" (click)="viewAll()">View All Bets</button>
+    <form [formGroup]="betForm">
         <div >
             <table class="table table-striped">
                 <thead>
@@ -29,7 +59,7 @@ input[type="number"] {
                 <tbody formArrayName="bets">
                 <ng-container *ngFor="let bet of betsArray.controls; let i = index" [formGroupName]="i">
                     <tr>
-                        <td>{{ bet.get('startTimeUTC')?.value | date: 'short' :'-900' }}</td>
+                        <td>{{ bet.get('startTimeUTC')?.value | date: 'short' :'-1100' }}</td>
                         <td>{{ bet.get('homeTeam')?.value }}</td>
                         <td>{{ bet.get('awayTeam')?.value }}</td>
                         <td>{{ bet.get('total')?.value }}</td>

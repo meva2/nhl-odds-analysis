@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -50,5 +50,11 @@ export class BookedBetService {
       responseType: 'text' as 'json'
     }
     return this.http.delete<string>(this.baseUrl+'/deleteBet', options);
+  }
+
+  getBookedBetsByDateRange(username: string, startTime: Date, endTime: Date): Observable<BookedBet[]>{
+    const params = {"username": username, "startTime": startTime.toISOString().replace('T', ' ').replace('Z', ''), "endTime": endTime.toISOString().replace('T', ' ').replace('Z', '')};
+    //const params = new HttpParams().set("username", username).set("startTime", startTime)
+    return this.http.get<any>(this.baseUrl+'/getUserBetsByDateRange', {params: params})
   }
 }
